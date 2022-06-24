@@ -1,0 +1,548 @@
+﻿@model  IEnumerable<QuanLyTaiSan_UserManagement.Models.SearchDeviceSparePart_Result>
+@using QuanLyTaiSan_UserManagement.Models;
+@using QuanLyTaiSan_UserManagement.Helper;
+@{
+    ViewBag.Title = "Danh sách phụ tùng";
+    Layout = "~/Views/Share/_LayoutPage1.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading mypanel">
+                Danh sách phụ tùng
+                <div class="btn-group pull-right">
+                    <button class="btn green btn-success">
+                        @Html.ActionLink("Thêm mới ", "AddSparePart", "SparePart", new { Id = -1 }, null)<i class="icon-plus"></i>
+                    </button>
+                </div>
+            </header>
+            <div class="panel-body">
+                <div class="adv-table">
+                    <div class="clearfix ">
+                        @using (Html.BeginForm("SearchSparePart", "SparePart", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "form-horizontal kh" }))
+                        {
+                            <div class="pull-left row col-md-12 nopadding">
+                                <div class="col-md-2 TcssMarg select2css">
+                                    <select class="searchType form-control input-sm m-bot15 myctr " name="TypeOfDevice" id="TypeOfDevice">
+                                        <option value="">Chọn loại thiết bị</option>
+                                        @foreach (var item in ViewData["TypeOfDevice"] as IList<DeviceType>)
+                                        {
+                                            <option value="@item.Id" @(ViewBag.type == @item.Id ? "selected" : "")>@item.TypeName</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-md-2 TcssMarg">
+                                    <input class="form-control input-sm m-bot15 myctr" placeholder="Nhập tên thiết bị" name="DeviceName" id="DeviceName" value="@ViewBag.deviceName" autocomplete="off">
+                                </div>
+                                <div class="col-md-1 TcssMarg">
+                                    <div class="btn-group">
+                                        <button class="btn btn-primary btn-sm" type="submit">Tìm kiếm <i class="icon-search"></i></button>
+                                    </div>
+                                </div>
+                                <div class="btn-group pull-right myeport ">
+                                    <button type="button" class="btn btn-white  btn-sm" id="btnExport" onclick="fnExcel_Report()">
+                                        Xuất Exel <i class="icon-print"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-primary btn-sm" style="margin-left:10px" id="btnDeleteAll" onclick="DeleteAll()">
+                                        Xóa phụ tùng đã chọn
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-md-12 nopadding">
+                                <div class="form-group col-md-6 clearfix pull-left" id="countdevice" style="margin-right: -29px">
+                                    <label class="control-label" style="color:blue"><b>Tìm Thấy @ViewBag.CountDevice phụ tùng</b></label>
+                                </div>
+                            </div>
+                        }
+                        <table class="display table table-bordered table-striped table-hover" id="SparePart_Table" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th class="center" style="width:2%">
+                                        <input name="check" id="check_all" type="checkbox" />
+                                    </th>
+                                    <th style="width:5%">Mã</th>
+                                    <th style="width:9%">Loại phụ tùng</th>
+                                    <th style="width:11%">Tên phụ tùng</th>
+                                    <th style="width:10%">Tổng SL nhập</th>
+                                    <th style="width:8%">SL Còn lại</th>
+                                    <th style="width:10%">Giá tiền</th>
+                                    <th style="width:13%">Cấu Hình</th>
+                                    <th style="width:5%">Chú thích</th>
+                                    <th style="width:3%">Xem</th>
+                                    <th style="width:3%">Nhập</th>
+                                    <th style="width:3%">Xuất</th>
+                                    <th style="width:3%">Xóa</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabledvdiv">
+                                @{foreach (var item in Model)
+                                    {
+                                        <tr class="gradeA" id="row_@item.Id">
+                                            <td class="center" style="width:2%"><input type="checkbox" name="check" class="form-c check" value="@item.Id" @*data-status="@item.Status" data-code="@item.DeviceCode"*@ /></td>
+                                            <td style="width:5%">@item.SparePartCode</td>
+                                            <td style="width:9%">@item.TypeName</td>
+                                            <td style="width:11%">
+                                                @item.SparePartName
+                                            </td>
+                                            <td style="width:7%;text-align:right">@item.TotalSparePartFomat</td>
+                                            <td style=" width:7%;text-align:right">@item.RemainingAmountFomat</td>
+                                            <td style="width:7%;text-align:right">@item.Amountfomat</td>
+                                            <td style="width:13%">@Html.Raw(item.Config)</td>
+                                            <td style="width:10%">@item.Notes</td>
+                                            <td class="center" style="width:3%">
+                                                <a class="edit  icon-eye-open" href="@Url.Action("EditSparePart", "SparePart", new { id_dv = item.Id })"></a>
+                                            </td>
+                                            <td class="center" style="width:3%">
+                                                <a class="icon-plus" id="deleteItem" href="#" onclick="ConfirmAdd('@item.Id','@item.TypeName', '@item.SparePartName')"></a>
+                                            </td>
+                                            <td class="center" style="width:3%">
+                                                <a class="icon-minus" id="deleteItem" href="#" onclick="ConfirmMinus('@item.Id','@item.TypeName', '@item.SparePartName')"></a>
+                                            </td>
+                                            <td class="center" style="width:3%">
+                                                <a class="icon-trash" id="deleteItem" href="#" onclick="ConfirmDelete(@item.Id)"></a>
+                                            </td>
+
+
+                                        </tr>
+                                    }}
+                            </tbody>
+                        </table>
+                        <input type="hidden" id="hiddenId" />
+                        <input type="hidden" id="hiddenId_delete" />
+
+                        <iframe id="txtArea1" style="display:none"></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="myModaldelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">DELETE</h4>
+                        </div>
+                        <div class="modal-body">
+                            Bạn có muốn xóa phụ tùng đã chọn?
+                            <div style="text-align:center;display:none" id="loaderDiv">
+                                <img src="~/Content/img/Spinner-1s-200px.gif" width="150" />
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a id="btnContinueDelete1" onclick="DeleteDevcieSpare()" class="btn btn-warning"> Xoá</a>
+                            <button data-dismiss="modal" class="btn btn-default" type="button">Hủy</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="myModaldelete_all" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">DELETE</h4>
+                        </div>
+                        <div class="modal-body">
+                            Bạn có muốn xóa tất cả phụ tùng đã chọn?
+                            <div style="text-align:center;display:none" id="loaderDiv">
+                                <img src="~/Content/img/Spinner-1s-200px.gif" width="150" />
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a id="btnDeleteDevcieSpare" onclick="DeleteDevcieSpare()" class="btn btn-warning"> Xoá</a>
+                            <button data-dismiss="modal" class="btn btn-default" type="button">Hủy</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="myModal_Add" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">Nhập phụ tùng</h4>
+
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group row">
+                                <label class="col-md-4"> Tên phụ tùng</label>
+                                <div class="col-md-8 input-group">
+                                    <input type="text" value="" class="form-control myctr form-control-inline input-medium " size="16" autocomplete="off" name="NameSparePart_add" id="NameSparePart_add" disabled />
+
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-4"> Loại</label>
+                                <div class="col-md-8 input-group">
+                                    <input type="text" value="" class="form-control myctr form-control-inline input-medium " size="16" autocomplete="off" name="TypeSparePart_add" id="TypeSparePart_add" disabled />
+
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-4 ">Giá</label>
+                                <div class="col-md-8">
+                                    <input type="text" class="form-control myctr form" name="PriceSparePart_add" id="PriceSparePart_add" autocomplete="off" onkeyup="FormatNumber(this);">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-4 ">Số lượng</label>
+                                <div class="col-md-8">
+                                    <input class="form-control myctr form" name="NumSparePart_add" id="NumSparePart_add" autocomplete="off" onkeyup="FormatNumber(this);">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-4 "> Ngày nhập</label>
+                                <div class="col-md-8 input-group">
+                                    <input type="text" value="" class="form-control myctr form-control-inline input-medium default-date-picker" size="16" autocomplete="off" name="DateAdded_add" id="DateAdded_add" placeholder="Click để chọn ngày" required />
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-warning icon-calendar" style="line-height:inherit"></button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-4 "> Chi tiết</label>
+                                <div class="col-md-8">
+                                    <textarea class="cke_editable form-control form myctr" rows="3" name="Notes_add" id="Notes_add"></textarea>
+                                </div>
+                            </div>
+                            <input type="hidden" id="hiddenId_add" />
+                        </div>
+                        <div class="modal-footer">
+                            <a id="btnContinueDelete1" onclick="ConfirmAdd_action()" class="btn btn-success"> Nhập</a>
+                            <button data-dismiss="modal" class="btn btn-default" type="button">Hủy</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="myModal_Minus" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">Xuất phụ tùng</h4>
+
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group row">
+                                <label class="col-md-4"> Tên phụ tùng</label>
+                                <div class="col-md-8 input-group">
+                                    <input type="text" value="" class="form-control myctr form-control-inline input-medium " size="16" autocomplete="off" name="NameSparePart_minus" id="NameSparePart_minus" disabled />
+
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-4"> Loại</label>
+                                <div class="col-md-8 input-group">
+                                    <input type="text" value="" class="form-control myctr form-control-inline input-medium " size="16" autocomplete="off" name="TypeSparePart_minus" id="TypeSparePart_minus" disabled />
+
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-md-4 ">Số lượng</label>
+                                <div class="col-md-8">
+                                    <input class="form-control myctr form" name="NumSparePart_Minus" id="NumSparePart_Minus" autocomplete="off" onkeyup="FormatNumber(this);">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-4 "> Ngày xuất</label>
+                                <div class="col-md-8 input-group">
+                                    <input type="text" value="" class="form-control myctr form-control-inline input-medium default-date-picker" size="16" autocomplete="off" name="DateAdded_minus" id="DateAdded_minus" placeholder="Click để chọn ngày" required />
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-warning icon-calendar" style="line-height:inherit"></button>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-md-4 "> Chi tiết</label>
+                                <div class="col-md-8">
+                                    <textarea class="cke_editable form-control form myctr" rows="3" name="Notes_minus" id="Notes_minus"></textarea>
+                                </div>
+                            </div>
+                            <input type="hidden" id="hiddenId_minus" />
+                        </div>
+                        <div class="modal-footer">
+                            <a id="btnContinueDelete1" onclick="ConfirmMinus_action()" class="btn btn-success"> Xuất</a>
+                            <button data-dismiss="modal" class="btn btn-default" type="button">Hủy</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+<!-- page end-->
+<script>
+    $('.SparePart').addClass('active');
+    $('.SparePartTable').addClass('active');
+    $('.searchType').select2();
+
+    $(document).ready(function () {
+        var table = $('#SparePart_Table').dataTable({
+            "bFilter": false,
+            "bLengthChange": false,
+            "iDisplayLength": 25,
+            "oLanguage": {
+                "sInfo": "Hiển thị từ _START_ đến _END_ của _TOTAL_ phụ tùng",
+                "oPaginate": {
+                    "sPrevious": "Trước",
+                    "sNext": "Tiếp",
+                }
+            },
+            buttons: [
+                'print'
+            ],
+            "bSort": false,
+            "aoColumnDefs": [
+                { "aTargets": [0, 8, 9], bSortable: false },
+            ]
+        });
+
+        $("#check_all").click(function () {
+            var rows = table.$('tr', { search: 'applied' });
+            if ($('input:checked', rows).length == rows.length) {
+                $('input[type="checkbox"]', rows).prop('checked', false);
+            }
+            else {
+                $('input[type="checkbox"]', rows).prop('checked', true);
+            }
+        });
+    });
+
+    // Export to exel
+    function fnExcel_Report() {
+        var TypeOfDevice = $('#TypeOfDevice').val();
+        var DeviceName = $('#DeviceName').val();
+
+        $.ajax({
+            url: "/SparePart/ExportSparePart",
+            data: {
+                TypeOfDevice: TypeOfDevice,
+                DeviceName: DeviceName
+            },
+            success: function (response) {
+                response = response.replace("SparePartName", "Tên phụ tùng ");
+                response = response.replace("TypeName", "Loại phụ tùng");
+                response = response.replace("TotalSparePartFomat", "Tổng SL nhập");
+                response = response.replace("RemainingAmountFomat", "Số lượng còn lại");
+                response = response.replace("Amountfomat", "Giá tiền");
+                response = response.replace("Config", "Cấu Hình");
+                response = response.replace("Notes", "Ghi chú");
+
+                var ua = window.navigator.userAgent;
+                var msie = ua.indexOf("MSIE ");
+                if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:s11\./))      // If Internet Explorer
+                {
+                    txtArea1.document.open("txt/html", "replace");
+                    txtArea1.document.write(response);
+                    txtArea1.document.close();
+                    txtArea1.focus();
+                    sa = txtArea1.document.execCommand("SaveAs", true, "Say Thanks to Sumit.xls");
+                }
+                else                 //other browser not tested on IE 11
+                {
+                    sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(response));
+                }
+            }
+        })
+    }
+</script>
+<script>
+    var DeleteAll = function () {
+        var chkArray = [];
+        $(".check:checked").each(function ()
+        {
+            chkArray.push($(this).val());
+        });
+        var selected;
+        selected = chkArray.join(',');
+        if (selected.length > 0) {
+            $("#hiddenId_delete").val(chkArray);
+            $("#myModaldelete_all").modal('show');
+            $('#btnDeleteDevcieSpare').click(function () {
+                var PrId = $("#hiddenId_delete").val();
+                $.ajax({
+                    type: "POST",
+                    url: "/SparePart/DeleteSparePart",
+                    data: { Id: PrId },
+                    success: function (result) {
+                        if (result) {
+                            $("#myModaldelete_all").modal("hide");
+                            window.location = '@Url.Action("SparePart", "SparePart")';
+                        }
+                        else {
+                            $("#myModaldelete_all").modal("hide");
+                            alert("Xóa bị lỗi");
+                        }
+                    }
+                })
+            });
+        }
+    }
+</script>
+<!--end scrip-->
+<!--Script ONE-->
+<script>
+
+    var ConfirmDelete = function (Id) {
+        $("#hiddenId").val(Id);
+        $("#myModaldelete").modal('show')
+    }
+    var DeleteDevcieSpare = function () {
+        var prId = $("#hiddenId").val();
+        $.ajax({
+            type: "POST",
+            url: "/SparePart/DeleteSparePart",
+            data: { Id: prId },
+            success: function (result) {
+                if (result) {
+                    $("#myModaldelete").modal("hide");
+                    alert("Xóa thành công");
+                    $("#row_" + prId).remove();
+                    $("#countdevice").load(location.href + " #countdevice>*", "");
+                }
+                else {
+                    $("#myModaldelete").modal("hide");
+                    alert("Có lỗi xảy ra");
+
+                }
+            }
+        })
+    }
+
+    // Nhap thiet bị
+    var ConfirmAdd = function (id_add, name_type, name_dv) {
+        $("#hiddenId_add").val(id_add);
+        $("#NameSparePart_add").val(name_dv);
+        $("#TypeSparePart_add").val(name_type);
+
+        $("#PriceSparePart_add").val("");
+        $("#NumSparePart_add").val("");
+        $("#DateAdded_add").val("");
+        $("#Notes_add").val("");
+
+        $("#myModal_Add").modal('show')
+    }
+
+    var ConfirmAdd_action = function () {
+        var id_spare = $("#hiddenId_add").val();
+        var Amount = $("#PriceSparePart_add").val();
+        var NumSpare = $("#NumSparePart_add").val();
+        var DateAdd = $("#DateAdded_add").val();
+        var Note = $("#Notes_add").val();
+        if (NumSpare == "" || DateAdd == "") {
+            alert("Vui lòng nhập đủ thông tin: Số lượng, Ngày nhập !");
+        }
+        else {
+            $.ajax({
+                type: "POST",
+                url: "/SparePart/SparePart_Add",
+                data: {
+                    id_spare: id_spare,
+                    Amount: Amount,
+                    NumSpare: NumSpare,
+                    DateAdd: DateAdd,
+                    Note: Note,
+                },
+                success: function (result) {
+                    if (result) {
+                        $("#myModal_Add").modal("hide");
+                        alert("Nhập thành công");
+                        $("#tabledvdiv").load(location.href + " #tabledvdiv>*", "");
+                    }
+                    else {
+                        alert("Có lỗi xảy ra, Vui lòng xem lại thông tin nhập !");
+                    }
+                }
+            })
+
+        }
+
+    };
+
+    // Xuat thiet bị
+    var ConfirmMinus = function (id_add, name_type, name_dv) {
+        $("#hiddenId_minus").val(id_add);
+        $("#NameSparePart_minus").val(name_dv);
+        $("#TypeSparePart_minus").val(name_type);
+
+        $("#NumSparePart_Minus").val("");
+        $("#DateAdded_minus").val("");
+        $("#Notes_minus").val("");
+
+        $("#myModal_Minus").modal('show')
+    }
+
+    var ConfirmMinus_action = function () {
+        var id_spare = $("#hiddenId_minus").val();
+        var NumSpare = $("#NumSparePart_Minus").val();
+        var DateAdd = $("#DateAdded_minus").val();
+        var Note = $("#Notes_minus").val();
+        if (NumSpare == "" || DateAdd == "") {
+            alert("Vui lòng nhập đủ thông tin: Số lượng, Ngày xuất !");
+        }
+        else {
+            $.ajax({
+                type: "POST",
+                url: "/SparePart/SparePart_Minus",
+                data: {
+                    id_spare: id_spare,
+                    NumSpare: NumSpare,
+                    DateAdd: DateAdd,
+                    Note: Note,
+                },
+                success: function (result) {
+                    if (result == 0) {
+                        $("#myModal_Minus").modal("hide");
+                        alert("Xuất thành công");
+                        $("#tabledvdiv").load(location.href + " #tabledvdiv>*", "");
+                    }
+                    else if (result == 1) {
+                        alert("Có lỗi xảy ra, Vui lòng xem lại thông tin nhập !");
+
+                    }
+                    else if (result == 2) {
+                        alert("Số lượng thiết bị xuất lớn hơn số lượng còn lại !");
+
+                    }
+                }
+            })
+
+        }
+
+    };
+
+
+    // DInh dang so
+    function FormatNumberValue(strvalue) {
+        var num;
+
+        num = strvalue.toString().replace(/\$|\,/g, '');
+        if (isNaN(num))
+            num = "";
+        sign = (num == (num = Math.abs(num)));
+        num = Math.floor(num * 100 + 0.50000000001);
+        num = Math.floor(num / 100).toString();
+        for (var i = 0; i < Math.floor((num.length - (1 + i)) / 3); i++)
+            num = num.substring(0, num.length - (4 * i + 3)) + ',' +
+                num.substring(num.length - (4 * i + 3));
+        return (((sign) ? '' : '-') + num);
+
+    }
+    //dinh dang so
+    function FormatNumber(obj) {
+
+        var strvalue;
+        if (eval(obj))
+            strvalue = eval(obj).value;
+        else
+            strvalue = obj;
+        eval(obj).value = FormatNumberValue(strvalue);
+    }
+
+</script>
+

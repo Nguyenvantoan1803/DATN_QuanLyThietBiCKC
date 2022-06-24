@@ -1,0 +1,193 @@
+<div>
+	<table cellspacing="0" rules="all" border="1" style="border-collapse:collapse;">
+		<tr>
+			<th scope="col">Mã Thiết Bị </th><th scope="col">Tên Thiết Bị</th><th scope="col">Tên Loại</th><th scope="col">Cấu Hình</th><th scope="col">Giá</th><th scope="col">Notes</th><th scope="col">Tên Người Dùng</th><th scope="col">Nhà Cung Cấp</th><th scope="col">Mã Phòng</th><th scope="col">Trạng Thái</th>
+		</tr><tr>
+			<td>USB00010                                          </td><td>Usb test</td><td>USB</td><td>&nbsp;</td><td>  100,000</td><td>&nbsp;</td><td>&nbsp;</td><td>Điện m&#225;y xanh</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>LTP00074                                          </td><td>Laptop test</td><td>Laptop</td><td>- Ram 4GB</td><td>  12,000,000</td><td>&nbsp;</td><td>&nbsp;</td><td>Thiết bị số H&#224; T&#226;y</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>LTP00073                                          </td><td>Laptop Dell Pro</td><td>Laptop</td><td>- M&#224;n Full HD- Ram 16 Gb</td><td>  22,000,000</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>PSH                                               </td><td>1</td>
+		</tr><tr>
+			<td>RLT00001                                          </td><td>Ram DDR3</td><td>Ram Laptop</td><td>  - Ram 4 Gb</td><td>  560,000</td><td>&nbsp;</td><td>B&#249;i Minh Tr&#237;</td><td>&nbsp;</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>LTP00071                                          </td><td>Laptop Dell 7559</td><td>Laptop</td><td>- Ram 16 Gb- Ổ cứng SSD 128 Gb- Ổ c&#250;ng HDD 500 Gb</td><td>  17,500,000</td><td>&nbsp;</td><td>B&#249;i Minh Tr&#237;</td><td>Điện m&#225;y xanh</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>CHT00216                                          </td><td>Chuột Fuhlen</td><td>Chuột m&#225;y t&#237;nh </td><td>  - Chuột c&#243; d&#226;y</td><td>  250,000</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>LTP00070                                          </td><td>Laptop Dell 7447</td><td>Laptop</td><td>- Ram 16 Gb- Ổ cứng SSD 256 Gb- M&#224;n 14 inch, HD</td><td>  12,500,000</td><td>&nbsp;</td><td>&nbsp;</td><td>M&#225;y t&#237;nh H&#224; Nội</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>LTP00069                                          </td><td>Laptop SamSung</td><td>Laptop</td><td>&nbsp;</td><td>  17,000,000</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>VUB00002                                          </td><td>Vỏ usb 2.0</td><td>Vỏ Usb </td><td>&nbsp;</td><td>  50,000</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>OCL00018                                          </td><td>Ổ cứng SSD </td><td>Ổ cứng Laptop</td><td>  - Dung lượng 500 Gb</td><td>  1,250,000</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>LTP00068                                          </td><td>Laptop Toshiba </td><td>Laptop</td><td>&nbsp;</td><td>  13,450,000</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>OCL00017                                          </td><td>Ổ cứng Dell</td><td>Ổ cứng Laptop</td><td>  - Dung lượng  500 Gb</td><td>  750,000</td><td>&nbsp;</td><td>&nbsp;</td><td>Điện m&#225;y xanh</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>OCL00016                                          </td><td>Ổ cứng HDD Dell</td><td>Ổ cứng Laptop</td><td>&nbsp;</td><td>  605,000</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>CHT00210                                          </td><td>Chuột Fuhlen</td><td>Chuột m&#225;y t&#237;nh </td><td>- Chuột c&#243; d&#226;y&#160;</td><td>  250,000</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>CHT00208                                          </td><td>Chuột Fuhlen</td><td>Chuột m&#225;y t&#237;nh </td><td>- Chuột c&#243; d&#226;y</td><td>  250,000</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>CHT00207                                          </td><td>Chuột Logitech</td><td>Chuột m&#225;y t&#237;nh </td><td>- Chuột c&#243; d&#226;y&#160;</td><td>  350,000</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>CDH00016                                          </td><td>Card Đồ Họa iGame GeForce RTX 2080 </td><td>Card đồ họa</td><td>&nbsp;</td><td>  97,000,000</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>LTP00060                                          </td><td>Lap test 7</td><td>Laptop</td><td>&nbsp;</td><td>  </td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>CDH00015                                          </td><td>VGA ASUS TUF Gaming X3 GeForce GTX 1660 </td><td>Card đồ họa</td><td>- Dung lượng bộ nhớ: 6GB GDDR6 OC Mode - 1860 MHz (Boost Clock) Gaming Mode (Default) - GPU Boost Clock : 1830 MHz , GPU Base Clock : 1530 MHz Băng th&#244;ng: 192-bit</td><td>  </td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>LTP00059                                          </td><td>Laptop Acer Predator Helios 700 PH717</td><td>Laptop</td><td>- Tốc độ:&#160;2.40 GHz upto 5.00 GHz, 8 cores 16 threads</td><td>  </td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>CDH00014                                          </td><td>Card Đồ Họa iGame GeForce RTX 2080 </td><td>Card đồ họa</td><td>&nbsp;</td><td>  3,500,000</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>CDH00013                                          </td><td>VGA ASUS ROG-STRIX-RX570-O4G-GAMING</td><td>Card đồ họa</td><td>- Dung lượng bộ nhớ: 4GB- GDDR5 L&#234;n tới 1310 Mhz-(Chế độ &#233;p xung) L&#234;n tới 1300 Mhz (Chế độ chơi game)</td><td>  </td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>LTP00058                                          </td><td>Lap Asus</td><td>Laptop</td><td>&nbsp;</td><td>  11,300,000</td><td>&nbsp;</td><td>&nbsp;</td><td>Điện m&#225;y xanh</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>CDH00005                                          </td><td>VGA ASUS ROG-STRIX-GTX1650-O4G-GAMING</td><td>Card đồ họa</td><td>- Dung lượng bộ nhớ: 4GB GDDR5- OC mode : 1860 MHz (Boost Clock)/1485 MHz (Base Clock)- Gaming mode : 1830 MHz (Boost Clock)/1485 MHz (Base Clock)</td><td>  1,200,000</td><td>&nbsp;</td><td>Đỗ Minh Vượng</td><td>&nbsp;</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>OCL00011                                          </td><td>Ổ cứng HDD SamSung</td><td>Ổ cứng Laptop</td><td>&nbsp;</td><td>  700,000</td><td>&nbsp;</td><td>B&#249;i Minh Tr&#237;</td><td>&nbsp;</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>OCL00007                                          </td><td>Ổ Cứng HDD Kingtom</td><td>Ổ cứng Laptop</td><td>&nbsp;</td><td>  650,000</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>OCL00006                                          </td><td>Ổ cứng HDD</td><td>Ổ cứng Laptop</td><td>- Dung lượng 500 Gb</td><td>  500,000</td><td>&nbsp;</td><td>&nbsp;</td><td>Thiết bị số H&#224; T&#226;y</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>OCL00005                                          </td><td>Ổ cứng SSD</td><td>Ổ cứng Laptop</td><td>- Dung lượng 128 Gb</td><td>  950,000</td><td>&nbsp;</td><td>&nbsp;</td><td>Điện m&#225;y xanh</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>OCL00004                                          </td><td>Ổ Cứng Laptop</td><td>Ổ cứng Laptop</td><td>- Dung lượng 500 Gb</td><td>  550,000</td><td>&nbsp;</td><td>Đỗ Minh Vượng</td><td>&nbsp;</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>OCL00003                                          </td><td>Ổ cứng HDD</td><td>Ổ cứng Laptop</td><td>- Dung lượng 500 Gb</td><td>  550,000</td><td>&nbsp;</td><td>Đỗ Minh Vượng</td><td>Thiết bị số H&#224; T&#226;y</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>CHT00200                                          </td><td>Chuột FUhlen</td><td>Chuột m&#225;y t&#237;nh </td><td>-Chuột c&#243; d&#226;y</td><td>  120,000</td><td>&nbsp;</td><td>Lưu Kiến Quyết</td><td>Nội thất BMT</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>CHT00199                                          </td><td>Chuột Fuhlen</td><td>Chuột m&#225;y t&#237;nh </td><td>- Chuột c&#243; d&#226;y</td><td>  250,000</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>CHT00197                                          </td><td>&nbsp;</td><td>Chuột m&#225;y t&#237;nh </td><td>&nbsp;</td><td>  </td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>KDL00001                                          </td><td>Kệ để loa SUN HOUSE</td><td>Kệ để loa </td><td>&nbsp;</td><td>  450,000</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>LMP00001                                          </td><td>Loa MicroLab 2.0</td><td>Loa Microlab 2.0</td><td>&nbsp;</td><td>  250,000</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>CHT00183                                          </td><td>Chuột Fuhlen</td><td>Chuột m&#225;y t&#237;nh </td><td>-Chuột kh&#244;ng d&#226;y</td><td>  450,000</td><td>&nbsp;</td><td>Đỗ Minh Vượng</td><td>&nbsp;</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>GHT00062                                          </td><td>&nbsp;</td><td>Ghế nhựa </td><td>&nbsp;</td><td>  </td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>MIN00002                                          </td><td>M&#225;y in phun m&#224;u Canon</td><td>M&#225;y in</td><td>- Tốc độ in (A4): 7 ipm (Black), 4.8 ipm (Color) -ISO/IEC24734</td><td>  12,570,000</td><td>&nbsp;</td><td>&nbsp;</td><td>C&#244;ng ty L&#234; Bảo Minh</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>CHT00182                                          </td><td>Chuột Fuhlen</td><td>Chuột m&#225;y t&#237;nh </td><td>Chuột c&#243; d&#226;y</td><td>  250,000</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>CHT00178                                          </td><td>Chuột Fuhlen</td><td>Chuột m&#225;y t&#237;nh </td><td>Chuột c&#243; d&#226;y&#160;</td><td>  250,000</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>MMT00032                                          </td><td>M&#224;n m&#225;y t&#237;nh SamSung</td><td>M&#224;n m&#225;y t&#237;nh</td><td>-M&#224;n 24 inch-Full HD</td><td>  3,000,000</td><td>&nbsp;</td><td>&nbsp;</td><td>Điện m&#225;y xanh</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>CHT00176                                          </td><td>Chuột Fuhlen</td><td>Chuột m&#225;y t&#237;nh </td><td>&nbsp;</td><td>  250,000</td><td>&nbsp;</td><td>&nbsp;</td><td>Điện m&#225;y xanh</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>GHT00060                                          </td><td>Ghế nhựa Tiền Phong</td><td>Ghế nhựa </td><td>&nbsp;</td><td>  120,000</td><td>&nbsp;</td><td>B&#249;i Minh Tr&#237;</td><td>Nội thất BMT</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>GHT00059                                          </td><td>Ghế nhựaTiền Phong</td><td>Ghế nhựa </td><td>&nbsp;</td><td>  120,000</td><td>&nbsp;</td><td>B&#249;i Minh Tr&#237;</td><td>M&#225;y t&#237;nh H&#224; Nội</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>GHT00052                                          </td><td>Ghế nhựa Tiền Phong</td><td>Ghế nhựa </td><td>&nbsp;</td><td>  120,000</td><td>&nbsp;</td><td>B&#249;i Minh Tr&#237;</td><td>Thiết bị số H&#224; T&#226;y</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>GHT00046                                          </td><td>Ghế nhựa Tiền Phong</td><td>Ghế nhựa </td><td>&nbsp;</td><td>  120,000</td><td>&nbsp;</td><td>B&#249;i Minh Tr&#237;</td><td>Thiết bị số H&#224; T&#226;y</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>BLV00018                                          </td><td>B&#224;n gỗ </td><td>B&#224;n l&#224;m việc </td><td>- Cao 1m2- D&#224;i 2m- Rộng 1m</td><td>  520,000</td><td>&nbsp;</td><td>Đỗ Minh Vượng</td><td>M&#225;y t&#237;nh H&#224; Nội</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>USB00005                                          </td><td>USB 2.0</td><td>USB</td><td>- Bộ nhớ 8GB</td><td>  100,000</td><td>&nbsp;</td><td>B&#249;i Minh Tr&#237;</td><td>&nbsp;</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>MMT00031                                          </td><td>M&#224;n LG</td><td>M&#224;n m&#225;y t&#237;nh</td><td>- M&#224;n 27 Inch</td><td>  5,000,000</td><td>&nbsp;</td><td>B&#249;i Minh Tr&#237;</td><td>&nbsp;</td><td>&nbsp;</td><td>3</td>
+		</tr><tr>
+			<td>GHT00044                                          </td><td>Ghế nhưa Tiền Phong</td><td>Ghế nhựa </td><td>&nbsp;</td><td>  120,000</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>CHT00166                                          </td><td>Chuột Fuhlen</td><td>Chuột m&#225;y t&#237;nh </td><td>&nbsp;</td><td>  250,000</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>3</td>
+		</tr><tr>
+			<td>USB00004                                          </td><td>USB 3.0</td><td>USB</td><td>&nbsp;</td><td>  150,000</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>3</td>
+		</tr><tr>
+			<td>CHT00165                                          </td><td>Chuột Fuhlen</td><td>Chuột m&#225;y t&#237;nh </td><td>&nbsp;</td><td>  250,000</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>3</td>
+		</tr><tr>
+			<td>GHT00038                                          </td><td>Ghế nhựa H&#242;a Ph&#225;t</td><td>Ghế nhựa </td><td>&nbsp;</td><td>  130,000</td><td>&nbsp;</td><td>&nbsp;</td><td>Điện m&#225;y xanh</td><td>&nbsp;</td><td>3</td>
+		</tr><tr>
+			<td>GHT00036                                          </td><td>Ghế nhưa H&#242;a Ph&#225;t</td><td>Ghế nhựa </td><td>- Chất liệu:&#160;nhựa cứng</td><td>  130,000</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>3</td>
+		</tr><tr>
+			<td>GHT00069                                          </td><td>Ghế nhựa H&#242;a Ph&#225;t</td><td>Ghế nhựa </td><td>&nbsp;</td><td>  130,000</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>3</td>
+		</tr><tr>
+			<td>BLV00022                                          </td><td>B&#224;n L&#224;m Việc Lắp Gh&#233;p Tiện Lợi</td><td>B&#224;n l&#224;m việc </td><td>&nbsp;</td><td>  689,000</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>3</td>
+		</tr><tr>
+			<td>CHT00163                                          </td><td>Chuột Fuhlen</td><td>Chuột m&#225;y t&#237;nh </td><td>- Chuột c&#243; d&#226;y</td><td>  250,000</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>MMT00029                                          </td><td>M&#224;n m&#225;y t&#237;nh mới nhất </td><td>M&#224;n m&#225;y t&#237;nh</td><td>Cấu h&#236;nh m&#224;n</td><td>  1,000,000</td><td>&nbsp;</td><td>Đỗ Minh Vượng</td><td>M&#225;y t&#237;nh H&#224; Nội</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>GHT00015                                          </td><td>Ghế nhựa Tiền Phong </td><td>Ghế nhựa </td><td>&nbsp;</td><td>  150,000</td><td>&nbsp;</td><td>B&#249;i Minh Tr&#237;</td><td>&nbsp;</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>CHT00132                                          </td><td>CHuột Fuhlen</td><td>Chuột m&#225;y t&#237;nh </td><td>- Chuột c&#243; d&#226;y</td><td>  250,000</td><td>&nbsp;</td><td>B&#249;i Minh Tr&#237;</td><td>Điện m&#225;y xanh</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>CHT00131                                          </td><td>Chuột Fuhlen</td><td>Chuột m&#225;y t&#237;nh </td><td>&nbsp;</td><td>  250,000</td><td>&nbsp;</td><td>B&#249;i Minh Tr&#237;</td><td>&nbsp;</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>LTP00051                                          </td><td>Lap Dell 7557</td><td>Laptop</td><td>- Ram 32 GB- Bộ nhớ: SSD 256 GB</td><td>  16,000,000</td><td>&nbsp;</td><td>Đỗ Minh Vượng</td><td>&nbsp;</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>LTP00050                                          </td><td>Laptop Lenovo Thinkpad X1 Carbon 6 20KHS01900</td><td>Laptop</td><td>Core i7-8550U (1.8GHz Upto 4.0GHz, 8MB Cache, 4 Cores 8 Threads), 8GB LPDDR3 2133MHz, 256GB SSD M.2 NVMe,</td><td>  12,334,567,890</td><td>&nbsp;</td><td>&nbsp;</td><td>Thiết bị số H&#224; T&#226;y</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>CHT00081                                          </td><td>Chuột Fuhlen</td><td>Chuột m&#225;y t&#237;nh </td><td>- Chuột c&#243; d&#226;y</td><td>  250,000</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>LTP00047                                          </td><td>Lap test CHECK</td><td>Laptop</td><td>&nbsp;</td><td>  1,234,568</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>CHT00217                                          </td><td>Chuột Fuhlen</td><td>Chuột m&#225;y t&#237;nh </td><td>- Chuột c&#243; d&#226;y</td><td>  250,000</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>3</td>
+		</tr><tr>
+			<td>CHT00014                                          </td><td>Chuột Fuhlen</td><td>Chuột m&#225;y t&#237;nh </td><td>- Chuột kh&#244;ng d&#226;y</td><td>  100,000</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>MMT00023                                          </td><td>M&#224;n m&#225;y t&#237;nh SamSung</td><td>M&#224;n m&#225;y t&#237;nh</td><td>-M&#224;n 24 inch-Độ ph&#226;n giải 4k</td><td>  3,300,000</td><td>&nbsp;</td><td>&nbsp;</td><td>Nội thất BMT</td><td>PKT4                                              </td><td>1</td>
+		</tr><tr>
+			<td>CHT00013                                          </td><td>CHuột Fuhend</td><td>Chuột m&#225;y t&#237;nh </td><td>&nbsp;</td><td>  200,000</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>LTP00031                                          </td><td>Laptop Workstation MSI WS75 9TL</td><td>Laptop</td><td>- CPU: Intel&#174; Core™ i7-9750H (2.60 GHz upto 4.50 GHz, 12MB)- RAM: DDR IV 16GB*2 (2666MHz)- Ổ cứng: 1TB NVMe PCIe Gen3x4 SSD VGA: Quadro RTX4000 8GB GDDR6</td><td>  14,500,000</td><td>&nbsp;</td><td>Đỗ Minh Vượng</td><td>&nbsp;</td><td>PKT4                                              </td><td>1</td>
+		</tr><tr>
+			<td>LTP00030                                          </td><td>Laptop PHP</td><td>Laptop</td><td>&nbsp;</td><td>  555,555,555</td><td>&nbsp;</td><td>Đỗ Minh Vượng</td><td>&nbsp;</td><td>&nbsp;</td><td>3</td>
+		</tr><tr>
+			<td>LTP00029                                          </td><td>Laptop MAC</td><td>Laptop</td><td>&nbsp;</td><td>  21,000,000</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>P002                                              </td><td>1</td>
+		</tr><tr>
+			<td>LTP00028                                          </td><td>Laptop Dell 7557</td><td>Laptop</td><td>&nbsp;</td><td>  55,555,000</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>P002                                              </td><td>1</td>
+		</tr><tr>
+			<td>LTP00027                                          </td><td>Laptop Workstation MSI WE75 9TK</td><td>Laptop</td><td>- CPU: Intel&#174; Core™ i7-9750H (2.60 GHz upto 4.50 GHz, 12MB)- RAM: DDRIV 16GB*2 (2666MHz)- Ổ cứng: 512GB NVMe PCIe Gen3x4 SSD + 1TB (SATA) 7200rpm VGA: Quadro RTX3000 6GB GDDR6</td><td>  </td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>PKT4                                              </td><td>1</td>
+		</tr><tr>
+			<td>LTP00026                                          </td><td>Laptop Asus A1200</td><td>Laptop</td><td>&nbsp;</td><td>  123,456</td><td>&nbsp;</td><td>B&#249;i Minh Tr&#237;</td><td>&nbsp;</td><td>PKT4                                              </td><td>1</td>
+		</tr><tr>
+			<td>CMT00008                                          </td><td>Case PHP</td><td>Case m&#225;y t&#237;nh</td><td>- Ram 8 GB</td><td>  10,000,000</td><td>&nbsp;</td><td>&nbsp;</td><td>M&#225;y t&#237;nh H&#224; Nội</td><td>P002                                              </td><td>1</td>
+		</tr><tr>
+			<td>GXL00003                                          </td><td>Ghế xoay lưới </td><td>Ghế xoay lưới</td><td>&nbsp;</td><td>  120,000</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>PKT4                                              </td><td>1</td>
+		</tr><tr>
+			<td>CHT00008                                          </td><td>Chuột fuhlen 1200 </td><td>Chuột m&#225;y t&#237;nh </td><td>&nbsp;</td><td>  100,000</td><td>&nbsp;</td><td>Lưu Kiến Quyết</td><td>&nbsp;</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>GHT00003                                          </td><td>Gghế nhựa tựa</td><td>Ghế nhựa </td><td>&nbsp;</td><td>  200,000</td><td>&nbsp;</td><td>Đỗ Minh Vượng</td><td>Nội thất BMT</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>GXL00001                                          </td><td>Ghế xoay lưới</td><td>Ghế xoay lưới</td><td>-Ghế xoay&#160;</td><td>  300,000</td><td>&nbsp;</td><td>&nbsp;</td><td>Nội thất BMT</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>GHT00001                                          </td><td>Gh&#234; nhựa Tiền Phong</td><td>Ghế nhựa </td><td>-Gh&#234; nhựa&#160;-Cao 50 cm-Mặt 30x30</td><td>  50,000</td><td>&nbsp;</td><td>&nbsp;</td><td>Nội thất BMT</td><td>PKT4                                              </td><td>1</td>
+		</tr><tr>
+			<td>BLV00002                                          </td><td>B&#224;n l&#224;m việc</td><td>B&#224;n l&#224;m việc </td><td>-B&#224;n gỗ-K&#237;ch thước 3m x 2m</td><td>  700,000</td><td>&nbsp;</td><td>&nbsp;</td><td>Nội thất BMT</td><td>PKT4                                              </td><td>1</td>
+		</tr><tr>
+			<td>BLV00001                                          </td><td>B&#224;n l&#224;m việc </td><td>B&#224;n l&#224;m việc </td><td>-B&#224;n gỗ&#160;-K&#237;ch thước 3m x 2m</td><td>  700,000</td><td>&nbsp;</td><td>&nbsp;</td><td>Nội thất BMT</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>CHT00006                                          </td><td>Chuột Fuhlen mới</td><td>Chuột m&#225;y t&#237;nh </td><td>-Chuột c&#243; d&#226;y</td><td>  20,000</td><td>&nbsp;</td><td>Ph&#237; Mạnh Lợi </td><td>Thiết bị số H&#224; T&#226;y</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>CHT00005                                          </td><td>Chuột fuhlen</td><td>Chuột m&#225;y t&#237;nh </td><td>-Chuột c&#243; d&#226;y&#160;</td><td>  20,000</td><td>&nbsp;</td><td>&nbsp;</td><td>Nội thất BMT</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>CMT00003                                          </td><td>Case m&#225;y t&#237;nh HP</td><td>Case m&#225;y t&#237;nh</td><td>-Ram 8GB-HDD 500 GB-CPU l&#245;i tứ&#160;</td><td>  5,000,000</td><td>&nbsp;</td><td>&nbsp;</td><td>Nội thất BMT</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>CMT00001                                          </td><td>Case m&#225;y t&#237;nh </td><td>Case m&#225;y t&#237;nh</td><td>-Ram 8GB-HDD 500 GB-CPU l&#245;i tứ&#160;</td><td>  5,000,000</td><td>&nbsp;</td><td>&nbsp;</td><td>Điện m&#225;y xanh</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>LTP00002                                          </td><td>Laptop Dell 7559</td><td>Laptop</td><td>-Ram 16 GB-HDD 1T-M&#224;n&#160; chuẩn 4k</td><td>  15,000,000</td><td>&nbsp;</td><td>&nbsp;</td><td>Thiết bị số H&#224; T&#226;y</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>LTP00001                                          </td><td>Laptop Dell 7447</td><td>Laptop</td><td>-Ram 16GB-SSD 256 GB-Card đồ họa GTX 8500</td><td>  12,800,000</td><td>&nbsp;</td><td>&nbsp;</td><td>Điện m&#225;y xanh</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>MMT00003                                          </td><td>M&#224;n m&#225;y t&#237;nh Asus</td><td>M&#224;n m&#225;y t&#237;nh</td><td>-M&#224;n 27 inch-Full HD</td><td>  6,000,000</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>0</td>
+		</tr><tr>
+			<td>MMT00002                                          </td><td>M&#224;n m&#225;y t&#237;nh ASUS</td><td>M&#224;n m&#225;y t&#237;nh</td><td>- 27 inch&#160;- Full HD</td><td>  6,000,000</td><td>&nbsp;</td><td>Đỗ Minh Vượng</td><td>M&#225;y t&#237;nh H&#224; Nội</td><td>PKT4                                              </td><td>1</td>
+		</tr><tr>
+			<td>MMT00001                                          </td><td>M&#224;n m&#225;y asus</td><td>M&#224;n m&#225;y t&#237;nh</td><td>-M&#224;n 27 inch&#160;-Full HD</td><td>  6,000,000</td><td>&nbsp;</td><td>B&#249;i Minh Tr&#237;</td><td>M&#225;y t&#237;nh H&#224; Nội</td><td>P002                                              </td><td>1</td>
+		</tr>
+	</table>
+</div>

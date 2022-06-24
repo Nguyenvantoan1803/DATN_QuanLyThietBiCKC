@@ -1,0 +1,299 @@
+﻿@model  IEnumerable<QuanLyTaiSan_UserManagement.Models.SearchDeviceSparePartHistory_Result>
+@using QuanLyTaiSan_UserManagement.Models;
+@using QuanLyTaiSan_UserManagement.Helper;
+@{
+    ViewBag.Title = "Lịch sử nhập/xuất phụ tùng";
+    Layout = "~/Views/Share/_LayoutPage1.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading mypanel">
+                Danh sách nhập/xuất phụ tùng
+
+            </header>
+            <div class="panel-body">
+                <div class="adv-table">
+                    <div class="clearfix ">
+                        @using (Html.BeginForm("SearchInOutSparePart", "SparePart", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "form-horizontal kh" }))
+                        {
+                            <div class="pull-left row col-md-12 nopadding">
+                                <div class="col-md-2 TcssMarg select2css">
+                                    <select class="searchType form-control input-sm m-bot15 myctr " name="TypeOfDevice" id="TypeOfDevice">
+                                        <option value="">Chọn loại thiết bị</option>
+                                        @foreach (var item in ViewData["TypeOfDevice"] as IList<DeviceType>)
+                                        {
+                                            <option value="@item.Id" @(ViewBag.type == @item.Id ? "selected" : "")>@item.TypeName</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-md-2 TcssMarg">
+                                    <select class="input-sm form-control  myctr " name="TypeTran">
+                                        <option value="" @(ViewBag.typeTrans == null ? "selected" : "")> Loại giao dịch </option>
+                                        <option value="NHAP" @(ViewBag.typeTrans == "NHAP" ? "selected" : "")> Nhập </option>
+                                        <option value="XUAT" @(ViewBag.typeTrans == "XUAT" ? "selected" : "")> Xuất</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2 TcssMarg">
+                                    <input class="form-control input-sm m-bot15 myctr" placeholder="Nhập tên thiết bị" name="DeviceName" id="DeviceName" value="@ViewBag.deviceName" autocomplete="off">
+                                </div>
+                                <div class="col-md-1 TcssMarg">
+                                    <div class="btn-group">
+                                        <button class="btn btn-primary btn-sm" type="submit">Tìm kiếm <i class="icon-search"></i></button>
+                                    </div>
+                                </div>
+                                <div class="btn-group pull-right myeport ">
+                                    <button type="button" class="btn btn-white  btn-sm" id="btnExport" onclick="fnExcel_Report()">
+                                        Xuất Exel <i class="icon-print"></i>
+                                    </button>
+                                    <button type="button" style="margin-left:10px" class="btn btn-primary  btn-sm" id="btnExport" onclick="delete_all_his()">
+                                        Xóa bản ghi đã chọn <i class="icon-trash"></i>
+                                    </button>
+
+                                </div>
+                            </div>
+                            <div class="col-md-12 nopadding">
+                                <div class="form-group col-md-6 clearfix pull-left" id="countdevice" style="margin-right: -29px">
+                                    <label class="control-label" style="color:blue"><b>Tìm Thấy @ViewBag.CountDevice bản ghi</b></label>
+                                </div>
+                            </div>
+                        }
+                        <table class="display table table-bordered table-striped table-hover" id="SparePartHis_Table" style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th class="center" style="width:2%">
+                                        <input name="check" id="check_all" type="checkbox" />
+                                    </th>
+                                    <th style="width:12%">Loại phụ tùng</th>
+                                    <th style="width:15%">Tên phụ tùng</th>
+                                    <th style="width:8%">Số lượng</th>
+                                    <th style="width:10%">Giá (nhập)</th>
+                                    <th style="width:10%">Loại giao dịch</th>
+                                    <th style="width:8%">Ngày nhập/ xuất</th>
+                                    <th style="width:20%">Ghi chú</th>
+                                    <th style="width:3%">Xóa</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabledvdiv">
+                                @{foreach (var item in Model)
+                                    {
+                                        <tr class="gradeA" id="row_@item.Id">
+                                            <td class="center" style="width:2%"><input type="checkbox" name="check" class="form-c check" value="@item.Id" @*data-status="@item.Status" data-code="@item.DeviceCode"*@ /></td>
+                                            <td style="width:12%">@item.TypeName</td>
+                                            <td style="width:15%">
+                                                @item.SparePartName
+                                            </td>
+                                            <td style="width:8%;text-align:right">@item.NumSparePartfomat</td>
+                                            <td style=" width:10%;text-align:right">@item.Amountfomat</td>
+                                            <td style="width:10%;text-align:right">@item.TransType</td>
+                                            <td style="width:10%;text-align:center">@String.Format("{0:dd/MM/yyyy}", item.DateAdded)</td>
+                                            <td style="width:20%">@item.Notes</td>
+                                            <td class="center" style="width:3%">
+                                                <a class="icon-trash" id="deleteItem" href="#" onclick="ConfirmDelete(@item.Id)"></a>
+                                            </td>
+
+
+                                        </tr>
+                                    }}
+                            </tbody>
+                        </table>
+                        <input type="hidden" id="hiddenId" />
+                        <input type="hidden" id="hiddenId_delete" />
+
+                        <iframe id="txtArea1" style="display:none"></iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="myModaldelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">DELETE</h4>
+                        </div>
+                        <div class="modal-body">
+                            Bạn có muốn xóa phụ tùng đã chọn?
+                            <div style="text-align:center;display:none" id="loaderDiv">
+                                <img src="~/Content/img/Spinner-1s-200px.gif" width="150" />
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a id="btnContinueDelete1" onclick="DeleteDevcieSpare()" class="btn btn-warning"> Xoá</a>
+                            <button data-dismiss="modal" class="btn btn-default" type="button">Hủy</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="myModaldelete_all" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">DELETE</h4>
+                        </div>
+                        <div class="modal-body">
+                            Bạn có muốn xóa tất cả phụ tùng đã chọn?
+                            <div style="text-align:center;display:none" id="loaderDiv">
+                                <img src="~/Content/img/Spinner-1s-200px.gif" width="150" />
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <a id="btnDeleteDevcieSpare" onclick="DeleteDevcieSpare_all()" class="btn btn-warning"> Xoá</a>
+                            <button data-dismiss="modal" class="btn btn-default" type="button">Hủy</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </section>
+    </div>
+</div>
+<!-- page end-->
+<script>
+    $('.SparePart').addClass('active');
+    $('.InOutSparePart').addClass('active');
+    $('.searchType').select2();
+
+    $(document).ready(function () {
+        var table = $('#SparePartHis_Table').dataTable({
+            "bFilter": false,
+            "bLengthChange": false,
+            "iDisplayLength": 25,
+            "oLanguage": {
+                "sInfo": "Hiển thị từ _START_ đến _END_ của _TOTAL_ phụ tùng",
+                "oPaginate": {
+                    "sPrevious": "Trước",
+                    "sNext": "Tiếp",
+                }
+            },
+            buttons: [
+                'print'
+            ],
+            "bSort": false,
+            "aoColumnDefs": [
+                { "aTargets": [0, 8], bSortable: false },
+            ]
+        });
+
+        $("#check_all").click(function () {
+            var rows = table.$('tr', { search: 'applied' });
+            if ($('input:checked', rows).length == rows.length) {
+                $('input[type="checkbox"]', rows).prop('checked', false);
+            }
+            else {
+                $('input[type="checkbox"]', rows).prop('checked', true);
+            }
+        });
+    });
+
+    // Export to exel
+    function fnExcel_Report() {
+        var TypeOfDevice = $('#TypeOfDevice').val();
+        var TypeTran = $('#TypeTran').val();
+        var DeviceName = $('#DeviceName').val();
+
+        $.ajax({
+            url: "/SparePart/ExportSparePartHis",
+            data: {
+                TypeOfDevice: TypeOfDevice,
+                TypeTran: TypeTran,
+                DeviceName: DeviceName
+            },
+            success: function (response) {
+                response = response.replace("SparePartName", "Tên phụ tùng ");
+                response = response.replace("TypeName", "Loại phụ tùng");
+                response = response.replace("NumSparePartfomat", "Số lượng");
+                response = response.replace("Amountfomat", "Giá tiền (nhập)");
+                response = response.replace("TypeTrans", "Loại giao dịch");
+                response = response.replace("DateAdded", "Ngày nhập/xuất");
+                response = response.replace("Notes", "Ghi chú");
+
+                var ua = window.navigator.userAgent;
+                var msie = ua.indexOf("MSIE ");
+                if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:s11\./))      // If Internet Explorer
+                {
+                    txtArea1.document.open("txt/html", "replace");
+                    txtArea1.document.write(response);
+                    txtArea1.document.close();
+                    txtArea1.focus();
+                    sa = txtArea1.document.execCommand("SaveAs", true, "Say Thanks to Sumit.xls");
+                }
+                else                 //other browser not tested on IE 11
+                {
+                    sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(response));
+                }
+            }
+        })
+    }
+</script>
+<script>
+    var delete_all_his = function () {
+        var chkArray = [];
+        $(".check:checked").each(function ()
+        {
+            chkArray.push($(this).val());
+        });
+        var selected;
+        selected = chkArray.join(',');
+        if (selected.length > 0) {
+            $("#hiddenId_delete").val(chkArray);
+            $("#myModaldelete_all").modal('show');
+            $('#btnDeleteDevcieSpare').click(function () {
+                var PrId = $("#hiddenId_delete").val();
+                $.ajax({
+                    type: "POST",
+                    url: "/SparePart/DeleteSparePartHis",
+                    data: { Id: PrId },
+                    success: function (result) {
+                        if (result) {
+                            $("#myModaldelete_all").modal("hide");
+                            window.location = '@Url.Action("InOutSparePart", "SparePart")';
+                        }
+                        else {
+                            $("#myModaldelete_all").modal("hide");
+                            alert("Xóa bị lỗi");
+                        }
+                    }
+                })
+            });
+        }
+    }
+</script>
+<!--end scrip-->
+<!--Script ONE-->
+<script>
+
+    var ConfirmDelete = function (Id) {
+        $("#hiddenId").val(Id);
+        $("#myModaldelete").modal('show')
+    }
+    var DeleteDevcieSpare = function () {
+        var prId = $("#hiddenId").val();
+        $.ajax({
+            type: "POST",
+            url: "/SparePart/DeleteSparePartHis",
+            data: { Id: prId },
+            success: function (result) {
+                if (result) {
+                    $("#myModaldelete").modal("hide");
+                    alert("Xóa thành công");
+                    $("#row_" + prId).remove();
+                    $("#countdevice").load(location.href + " #countdevice>*", "");
+                }
+                else {
+                    $("#myModaldelete").modal("hide");
+                    alert("Có lỗi xảy ra");
+
+                }
+            }
+        })
+    }
+
+
+
+</script>
+

@@ -1,0 +1,176 @@
+﻿@using QuanLyTaiSan_UserManagement.Models;
+@{
+    ViewBag.Title = "Thêm phụ tùng";
+    Layout = "~/Views/Share/_LayoutPage1.cshtml";
+}
+
+<script src="~/Content/ckeditor/ckeditor.js"></script>
+<section class="panel">
+    <div class="panel">
+        <div class="panel-heading">
+            <a class="edit panel-default" style="margin-right:10px" href="@Url.Action("SparePart", "SparePart")">
+                <span class="icon-border">
+                    <i class="icon-arrow-left"> </i>
+                </span>
+            </a>
+            Thêm thiết bị phụ tùng
+        </div>
+        @using (Html.BeginForm("AddSparePart", "SparePart", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "form-horizontal  editcontent", @id = "formIdRp" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="panel-body Tlabel-Edit">
+
+                <div class="form-group row">
+                    <label class="col-md-2 ">
+                        Loại phụ tùng
+
+                    </label>
+                    <div class="col-md-6">
+                        <select class="searchType form-control input-sm m-bot15 myctr " name="TypeOfSparePart" id="TypeOfSparePart" required>
+                            <option value="">Chọn loại </option>
+                            @foreach (var item in ViewData["TypeOfDevice"] as IList<DeviceType>)
+                            {
+                                <option value="@item.Id" @(ViewBag.type == @item.Id ? "selected" : "")>@item.TypeName</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-2 "> Tên phụ tùng</label>
+                    <div class="col-md-6 input-group">
+                        <input type="text" value="" class="form-control myctr form-control-inline input-medium " size="16" autocomplete="off" name="NameSparePart" id="NameSparePart" required />
+
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-2 ">Giá</label>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control myctr form" name="PriceSparePart" id="PriceSparePart" autocomplete="off" onkeyup="FormatNumber(this);">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-2 ">Số lượng</label>
+                    <div class="col-md-6">
+                        <input class="form-control myctr form" name="NumSparePart" id="NumSparePart" autocomplete="off" type="number" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-2 "> Ngày nhập</label>
+                    <div class="col-md-6 input-group">
+                        <input type="text" value="" class="form-control myctr form-control-inline input-medium default-date-picker" size="16" autocomplete="off" name="DateAdded" id="DateAdded" placeholder="Click để chọn ngày" required />
+                        <span class="input-group-btn">
+                            <button class="btn btn-warning icon-calendar" style="line-height:inherit"></button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-2 "> Cấu hình</label>
+                    <div class="col-md-6">
+                        <textarea class="cke_editable form-control form" rows="3" id="Configuration" name="Configuration"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-2 "> Chi tiết</label>
+                    <div class="col-md-6">
+                        <textarea class="cke_editable form-control form myctr" rows="3" name="Notes" id="Notes"></textarea>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-md-2 "> Tải file</label>
+                    <div class="col-md-6">
+                        <input type="file" multiple="multiple" name="files" id="files" />
+                    </div>
+                </div>
+
+            </div>
+            <div class="form-group row form-body">
+                <div class="TcssButton">
+                    <button type="submit" class="btn btn-primary btn-large"> Lưu </button>
+                    <button type="button" class="btn btn-white">@Html.ActionLink("Hủy", "SparePart", "SparePart") </button>
+
+                </div>
+            </div>
+        }
+    </div>
+
+</section>
+<script>
+    CKEDITOR.replace('Configuration')
+    $('.SparePart').addClass('active');
+    $('.AddSparePart').addClass('active');
+    $('#TypeOfSparePart').select2();
+
+
+    document.getElementById("formIdRp").onsubmit = function () {
+        //var ctgr = $("#CategoryTest");
+        //var dvId = $("#DeviceId");
+        //if (!ctgr.val().trim()) {
+        //    $("#TestNullType").show();
+        //    return false;
+        //}
+        //if (!dvId.val().trim()) {
+        //    $("#TestNullRepairDv").show();
+        //    return false;
+        //}
+    }
+
+    function ChangeCycleTest() {
+        var dateTest = $("#DateOfTest").val();
+        if (dateTest == "" || dateTest == null) {
+            $("#CycleTest").val('');
+            alert("Vui lòng nhập ngày kiểm tra !");
+        }
+        else {
+            var _DateOfTest = $("#DateOfTest").val();
+            var _CycleTest = $("#CycleTest").val();
+            $.ajax({
+                type: "POST",
+                url: "/ScheduleTest/AddMonth",
+                data: {
+                    _DateOfTest: _DateOfTest,
+                    _CycleTest: _CycleTest
+                },
+                success: function (response) {
+                    var _Nextdate = response.dateFeauture;
+                    var _rs = response._rs;
+                    if (_rs) {
+                        $("#NextDateOfTest").val(_Nextdate);
+                    }
+                    else {
+                        alert("Đã xảy ra lỗi ! Vui lòng thử lại !")
+                    }
+                }
+            });
+
+        }
+    }
+
+
+    // DInh dang so
+    function FormatNumberValue(strvalue) {
+        var num;
+
+        num = strvalue.toString().replace(/\$|\,/g, '');
+        if (isNaN(num))
+            num = "";
+        sign = (num == (num = Math.abs(num)));
+        num = Math.floor(num * 100 + 0.50000000001);
+        num = Math.floor(num / 100).toString();
+        for (var i = 0; i < Math.floor((num.length - (1 + i)) / 3); i++)
+            num = num.substring(0, num.length - (4 * i + 3)) + ',' +
+                num.substring(num.length - (4 * i + 3));
+        return (((sign) ? '' : '-') + num);
+
+    }
+    //dinh dang so
+    function FormatNumber(obj) {
+
+        var strvalue;
+        if (eval(obj))
+            strvalue = eval(obj).value;
+        else
+            strvalue = obj;
+        eval(obj).value = FormatNumberValue(strvalue);
+    }
+</script>
+

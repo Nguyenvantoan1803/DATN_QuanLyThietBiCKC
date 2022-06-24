@@ -1,0 +1,483 @@
+﻿@using QuanLyTaiSan_UserManagement.Models;
+@model QuanLyTaiSan_UserManagement.Models.SearchDeviceSparePart_Result
+@using QuanLyTaiSan_UserManagement.Helper;
+@{
+    ViewBag.Title = "EditSparePart";
+    Layout = "~/Views/Share/_LayoutPage1.cshtml";
+}
+
+<script src="~/Content/ckeditor/ckeditor.js"></script>
+<section class="panel">
+    <div class="panel">
+        <div class="panel-heading">
+            <a class="edit panel-default" style="margin-right:10px" href="@Url.Action("SparePart", "SparePart")">
+                <span class="icon-border">
+                    <i class="icon-arrow-left"> </i>
+                </span>
+            </a>
+            Chi tiết thiết bị phụ tùng
+        </div>
+        @using (Html.BeginForm("EditSparePart", "SparePart", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "form-horizontal  editcontent", @id = "formIdRp" }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="panel-body Tlabel-Edit">
+                <input type="hidden" id="hidden_Id" name="hidden_Id" value="@Model.Id" />
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <label class="col-md-4">
+                            Loại phụ tùng
+
+                        </label>
+                        <div class="col-md-8">
+                            <select class="searchType form-control input-sm m-bot15 myctr " name="TypeOfSparePart" id="TypeOfSparePart" required disabled>
+                                <option value="">Chọn loại </option>
+                                @foreach (var item in ViewData["TypeOfDevice"] as IList<DeviceType>)
+                                {
+                                    <option value="@item.Id" @(ViewBag.type == @item.Id ? "selected" : "")>@item.TypeName</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-4 "> Tên phụ tùng</label>
+                        <div class="col-md-8 input-group">
+                            <input type="text" value="@Model.SparePartName" class="form-control myctr form-control-inline input-medium " size="16" autocomplete="off" name="NameSparePart" id="NameSparePart" required />
+
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-4 ">Giá</label>
+                        <div class="col-md-8">
+                            <input type="text" value="@Model.Amountfomat " class="form-control myctr form" name="PriceSparePart" id="PriceSparePart" autocomplete="off" onkeyup="FormatNumber(this);">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-4 ">Số lượng</label>
+                        <div class="col-md-8">
+                            <input class="form-control myctr form" value="@Model.RemainingAmountFomat" name="NumSparePart" id="NumSparePart" autocomplete="off" type="number" required disabled>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-4 "> Ngày nhập</label>
+                        <div class="col-md-8 input-group">
+                            <input type="text" value="@String.Format("{0:yyyy-MM-dd}",Model.DateAdded)" class="form-control myctr form-control-inline input-medium default-date-picker" size="16" autocomplete="off" name="DateAdded" id="DateAdded" placeholder="Click để chọn ngày" required />
+                            <span class="input-group-btn">
+                                <button class="btn btn-warning icon-calendar" style="line-height:inherit"></button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-4 "> Cấu hình</label>
+                        <div class="col-md-8">
+                            <textarea class="cke_editable form-control form" rows="3" id="Configuration" name="Configuration">@Model.Config</textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-4 "> Chi tiết</label>
+                        <div class="col-md-8">
+                            <textarea class="cke_editable form-control form myctr" rows="3" name="Notes" id="Notes">@Model.Notes</textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-4 "> Tải file</label>
+                        <div class="col-md-8">
+                            <input type="file" multiple="multiple" name="files" id="files" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group row">
+                        <label class="col-md-4 ">Danh sách file</label>
+                        <div class="col-md-8" id="divid_tbfile">
+                            <table class="table table-responsive table-bordered">
+                                <tr>
+                                    <th>File Name</th>
+
+                                </tr>
+                                @foreach (var item in ViewData["DeviceFile"] as IList<DeviceFile>)
+                                {
+                                    <tr>
+                                        <td>@item.FileNames </td>
+                                        <td style="text-align:center">
+                                            <a class="edit  icon-download" href="@Url.Action("dowload_file", "Device", new { id_file = item.id })"> Tải xuống</a>
+                                        </td>
+                                        <td style="text-align:center">
+                                            <a class="edit  icon-eye-open" href="#" onclick="open_file(@item.id)"> Xem</a>
+                                        </td>
+                                        <td style="text-align:center">
+                                            <a class="edit  icon-trash" href="#" onclick="delete_file(@item.id)"> Xóa</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-md-4"> Ảnh phụ tùng</label>
+                        <div class="col-md-8 ">
+                            @foreach (var item in ViewData["DeviceFile_Pic_2"] as IList<DeviceFile>)
+                            {
+                                <img alt="Ảnh thiết bị" src="@item.FileLocal" style="width:200px;height:200px;border: 1px solid #ddd;">
+                            }
+                        </div>
+                    </div>
+                </div>
+
+
+                <input type="hidden" id="id_file_hidden" />
+
+
+
+
+
+
+            </div>
+            <div class="form-group row form-body">
+                <div class="TcssButton">
+                    <button type="submit" class="btn btn-primary btn-large"> Lưu </button>
+                    <button type="button" class="btn btn-white">@Html.ActionLink("Hủy", "SparePart", "SparePart") </button>
+
+                </div>
+            </div>
+        }
+        <div class="form-group">
+
+            <header class="panel-body row ">
+                <div class="col-md-12 Tcsspad TcssPadT">
+                    <div class="col-md-10 ">
+                        <a class="styletext"> Lịch sử nhập xuất phụ tùng</a>
+                    </div>
+                    <div class="col-md-2" style="text-align:right">
+                        <button class="btn btn-danger  btn-sm" type="button" onclick="ConfirmDeleteHisAll()">Xóa tất cả mục đã chọn <i class="icon-trash"></i> </button>
+                    </div>
+                </div>
+            </header>
+            <div class="tcsspadtop">
+                <div class="adv-table panel-body tcssMarT" id="divtype">
+                    <table class="display table table-bordered table-striped table-hover" id="InOutSparePart_Table" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th class="center" style="width:2%">
+                                    <input name="check" id="check_all" type="checkbox" />
+                                </th>
+                                <th style="width:9%">Loại giao dịch</th>
+                                <th style="width:9%">Số lượng</th>
+                                <th style="width:11%">Giá nhập</th>
+                                <th style="width:10%">Ngày nhập/xuất</th>
+                                <th style="width:5%">Chú thích</th>
+                                <th style="width:3%">Xóa</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabledvdiv">
+                            @{foreach (var item in ViewData["historyInOutSparePart"] as IList<DeviceSparePartHistory>)
+                                {
+                                    <tr class="gradeA" id="row_@item.Id">
+                                        <td class="center" style="width:2%"><input type="checkbox" name="check" class="form-c check" value="@item.Id" @*data-status="@item.Status" data-code="@item.DeviceCode"*@ /></td>
+                                        <td style="width:9%">@item.TransType</td>
+                                        <td style="width:9%"> @String.Format("{0:#,##0}", item.NumSparePart)</td>
+                                        <td style="width:11%">
+                                            @String.Format("{0:#,##0}", item.Amount)
+                                        </td>
+                                        <td style="width:7%;text-align:right">@String.Format("{0:dd/MM/yyyy}", item.DateAdded)</td>
+                                        <td style=" width:7%;text-align:right">@Html.Raw(@item.Notes)</td>
+                                        <td class="center" style="width:3%">
+                                            <a class="icon-trash" id="deleteItem" href="#" onclick="ConfirmDeleteHis(@item.Id)"></a>
+                                        </td>
+                                    </tr>
+                                }}
+                        </tbody>
+                    </table>
+                    <input type="hidden" id="hiddenId1" />
+                    <input type="hidden" id="hiddenId" />
+                </div>
+            </div>
+
+
+
+        </div>
+
+
+        <div class="modal fade" id="myModaldelete_file" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">DELETE FILE</h4>
+                    </div>
+                    <div class="modal-body">
+                        Bạn có muốn xóa file?
+                        <div style="text-align:center;display:none" id="loaderDiv">
+                            <img src="~/Content/img/Spinner-1s-200px.gif" width="150" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a id="btnContinueDelete" onclick="ConfirmDeletefile()" class="btn btn-danger"> Xoá</a>
+                        <button data-dismiss="modal" class="btn btn-default" type="button">Hủy</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Popup DELETE All -->
+        <div id="myModaldelete1" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Xóa lịch sử nhập/xuất</h4>
+                    </div>
+                    <div class="modal-body">
+                        <!--Containt-->
+                        <p>Bạn chắc chắn muốn xóa lịch sử nhập/xuất phụ tùng !</p>
+                        <!--The end Containt-->
+                    </div>
+                    <div class="modal-footer">
+                        <a id="btnContinueDeleteHisAll" class="btn btn-primary">Xóa</a>
+                        <button type="button" class="btn btn-white" data-dismiss="modal">Hủy</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--The end popup-->
+        <!--Popup DELETE ONE-->
+        <div id="myModaldelete" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Xóa lịch sử nhập xuất !</h4>
+                    </div>
+                    <div class="modal-body">
+                        <!--Containt-->
+                        <p>Bạn chắc chắn muốn xóa lịch sử nhập/xuất phụ tùng</p>
+                        <div style="text-align:center;display:none" id="loaderDiv">
+                            <img src="~/Content/img/Spinner-1s-200px.gif" width="150" />
+                        </div>
+                        <!--The end Containt-->
+                    </div>
+                    <div class="modal-footer">
+                        <a id="btnContinueDelete" class="btn btn-primary" onclick="DeleteHis()">Xóa</a>
+                        <button type="button" class="btn btn-white" data-dismiss="modal">Hủy</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--The end popup-->
+    </div>
+
+</section>
+
+<script>
+    $(document).ready(function () {
+        $('#InOutSparePart_Table').dataTable({
+            "oLanguage": {
+                "sInfo": "Hiển thị từ _START_ đến _END_ của _TOTAL_ bản ghi",
+                "sSearch": "Tìm Kiếm",
+                "oPaginate": {
+                    "sPrevious": "Trước",
+                    "sNext": "Tiếp",
+                }
+            },
+
+            //"bLengthChange": false,
+            //"bFilter": false,
+            "bSort": false,
+            "aoColumnDefs": [{
+                'bSortable': false,
+                'aTargets': [0],
+            }]
+        });
+    });
+</script>
+<script>
+    var dowload_file = function (filelocal) {
+        window.location.href ='@Url.Action("dowload_file", "Device", new { param1 = "" })';
+    }
+
+    var open_file = function (file_id) {
+           $.ajax({
+            type: "GET",
+               url: "/Device/check_file",
+               data: { file_id: file_id },
+            success: function (result) {
+                if (result) {
+                    window.open('/Device/OpenFile?id_file=' + file_id + '', "_blank");
+                } else {
+                    alert("Định dạng file không xem được !");
+                }
+            }
+        })
+    }
+
+    var delete_file = function (file_id) {
+        $("#id_file_hidden").val(file_id);
+        $("#myModaldelete_file").modal('show');
+
+    }
+
+    var ConfirmDeletefile = function () {
+        var id_file = $("#id_file_hidden").val();
+        $.ajax({
+            type: "GET",
+            url: "/Device/delete_file",
+            data: { id_file: id_file },
+            success: function (result) {
+                if (result) {
+                    alert("Xóa file thành công");
+                    $("#divid_tbfile").load(location.href + " #divid_tbfile>*", "");
+                    $("#myModaldelete_file").modal("hide");
+                    $("#id_file_hidden").val('');
+                } else {
+                    alert("Xóa không thành công");
+                }
+            }
+        })
+    }
+
+
+</script>
+<script>
+    CKEDITOR.replace('Configuration')
+    $('.SparePart').addClass('active');
+    $('.AddSparePart').addClass('active');
+    $('#TypeOfSparePart').select2();
+
+
+    document.getElementById("formIdRp").onsubmit = function () {
+        //var ctgr = $("#CategoryTest");
+        //var dvId = $("#DeviceId");
+        //if (!ctgr.val().trim()) {
+        //    $("#TestNullType").show();
+        //    return false;
+        //}
+        //if (!dvId.val().trim()) {
+        //    $("#TestNullRepairDv").show();
+        //    return false;
+        //}
+    }
+
+    function ChangeCycleTest() {
+        var dateTest = $("#DateOfTest").val();
+        if (dateTest == "" || dateTest == null) {
+            $("#CycleTest").val('');
+            alert("Vui lòng nhập ngày kiểm tra !");
+        }
+        else {
+            var _DateOfTest = $("#DateOfTest").val();
+            var _CycleTest = $("#CycleTest").val();
+            $.ajax({
+                type: "POST",
+                url: "/ScheduleTest/AddMonth",
+                data: {
+                    _DateOfTest: _DateOfTest,
+                    _CycleTest: _CycleTest
+                },
+                success: function (response) {
+                    var _Nextdate = response.dateFeauture;
+                    var _rs = response._rs;
+                    if (_rs) {
+                        $("#NextDateOfTest").val(_Nextdate);
+                    }
+                    else {
+                        alert("Đã xảy ra lỗi ! Vui lòng thử lại !")
+                    }
+                }
+            });
+
+        }
+    }
+
+
+    // DInh dang so
+    function FormatNumberValue(strvalue) {
+        var num;
+
+        num = strvalue.toString().replace(/\$|\,/g, '');
+        if (isNaN(num))
+            num = "";
+        sign = (num == (num = Math.abs(num)));
+        num = Math.floor(num * 100 + 0.50000000001);
+        num = Math.floor(num / 100).toString();
+        for (var i = 0; i < Math.floor((num.length - (1 + i)) / 3); i++)
+            num = num.substring(0, num.length - (4 * i + 3)) + ',' +
+                num.substring(num.length - (4 * i + 3));
+        return (((sign) ? '' : '-') + num);
+
+    }
+    //dinh dang so
+    function FormatNumber(obj) {
+
+        var strvalue;
+        if (eval(obj))
+            strvalue = eval(obj).value;
+        else
+            strvalue = obj;
+        eval(obj).value = FormatNumberValue(strvalue);
+    }
+
+</script>
+
+<script>
+    var ConfirmDeleteHisAll = function () {
+        var chkArray = [];
+        $(".check:checked").each(function ()
+        {
+            chkArray.push($(this).val());
+        });
+        var selected;
+        selected = chkArray.join(',');
+        if (selected.length > 0) {
+            $("#hiddenId1").val(chkArray);
+            $("#myModaldelete1").modal('show');
+            $('#btnContinueDeleteHisAll').click(function () {
+                $("#loaderDiv").show();
+                var PrId = $("#hiddenId1").val();
+                $.ajax({
+                    type: "POST",
+                    url: "/SparePart/DeleteSparePartHis",
+                    data: { Id: PrId },
+                    success: function (result) {
+                        if (result) {
+                            $("#loaderDiv").hide();
+                            $("#myModaldelete1").modal("hide");
+                            $("#divtype").load(location.href + " #divtype>*", "");
+                           // window.location = '@Url.Action("ScheduleTest", "ScheduleTest")';
+                        } else {
+
+                            $("#loaderDiv").hide();
+                            $("#myModaldelete1").modal("hide");
+                            alert("Xóa bị lỗi");
+                        }
+                    }
+                })
+            });
+        }
+    }
+</script>
+<!--end scrip-->
+<!--Script ONE-->
+<script>
+    var ConfirmDeleteHis = function (Id) {
+        $("#hiddenId").val(Id);
+        $("#myModaldelete").modal('show')
+    }
+    var DeleteHis = function () {
+        var prId = $("#hiddenId").val();
+        $("#loaderDiv").show();
+        $.ajax({
+            type: "POST",
+            url: "/SparePart/DeleteSparePartHis",
+            data: { Id: prId },
+            success: function (result) {
+                $("#loaderDiv").hide();
+                $("#myModaldelete").modal("hide");
+                $("#row_" + prId).remove();
+            }
+        })
+    }
+</script>
+<!--Script end-->
