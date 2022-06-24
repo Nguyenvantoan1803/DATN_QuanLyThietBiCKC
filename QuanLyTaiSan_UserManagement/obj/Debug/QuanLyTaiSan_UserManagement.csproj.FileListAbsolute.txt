@@ -918,7 +918,6 @@ C:\Users\Manh Cuong\Source\Repos\DATN_QuanLyThietBiCKC\QuanLyTaiSan_UserManageme
 C:\Users\Manh Cuong\Source\Repos\DATN_QuanLyThietBiCKC\QuanLyTaiSan_UserManagement\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\Manh Cuong\Source\Repos\DATN_QuanLyThietBiCKC\QuanLyTaiSan_UserManagement\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\Manh Cuong\Source\Repos\DATN_QuanLyThietBiCKC\QuanLyTaiSan_UserManagement\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Users\Manh Cuong\Source\Repos\DATN_QuanLyThietBiCKC\QuanLyTaiSan_UserManagement\obj\Debug\QuanLyTaiSan_UserManagement.csproj.AssemblyReference.cache
 C:\Users\Manh Cuong\Source\Repos\DATN_QuanLyThietBiCKC\QuanLyTaiSan_UserManagement\obj\Debug\QuanLyTaiSan_UserManagement.Migrations.InitialCreate.resources
 C:\Users\Manh Cuong\Source\Repos\DATN_QuanLyThietBiCKC\QuanLyTaiSan_UserManagement\obj\Debug\QuanLyTaiSan_UserManagement.Migrations.UserAuthorization.resources
 C:\Users\Manh Cuong\Source\Repos\DATN_QuanLyThietBiCKC\QuanLyTaiSan_UserManagement\obj\Debug\QuanLyTaiSan_UserManagement.Properties.Resources.resources
