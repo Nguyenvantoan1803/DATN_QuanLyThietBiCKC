@@ -931,6 +931,7 @@
     <Content Include="Views\UserRole\UserIndex.cshtml" />
     <Content Include="Views\Account_App_New\Login_New.cshtml" />
     <Content Include="Views\Shared\Error401.cshtml" />
+    <Content Include="Views\Device\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\assets\font\" />
